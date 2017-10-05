@@ -11,9 +11,15 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Face_API_Match
-{
+{ 
+
+    
+
     class Groups
     {
+
+        public static HttpClient client = new HttpClient();
+
 
         public static string APIkey = ConfigurationManager.AppSettings["APIkey"];
         public static string GroupID { get; private set; }
@@ -38,7 +44,7 @@ namespace Face_API_Match
         /// <returns> All groups and info connected to the APIkey</returns>
         public static async Task<string> GetGroupInfo()
         {
-            var client = new HttpClient();
+            
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/";
             HttpResponseMessage response = await client.GetAsync(uri);

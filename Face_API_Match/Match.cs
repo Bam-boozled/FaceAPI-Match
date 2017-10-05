@@ -106,9 +106,7 @@ namespace Face_API_Match
 
             const string subscriptionKey = "e57a566e8fed4377b4ef178c8feba526";
 
-            var client = new HttpClient();
-
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify";
 
@@ -116,7 +114,7 @@ namespace Face_API_Match
             HttpContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            HttpResponseMessage response = await client.PostAsync(uri, content);
+            HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
 
 
             Console.WriteLine("Response status: " + response.StatusCode);

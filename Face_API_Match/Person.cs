@@ -26,13 +26,12 @@ namespace Face_API_Match
         public static async Task<string> GetPersonInfo(string personGroupId)
         {
 
-            var client = new HttpClient();
 
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
+            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + personGroupId + "/persons?";
 
-            HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await Groups.client.GetAsync(uri);
 
             return await response.Content.ReadAsStringAsync();
         }
@@ -91,13 +90,12 @@ namespace Face_API_Match
         public static async Task<string> PersonInfo(string personGroupId, string personId)
         {
 
-            var client = new HttpClient();
             // Request headers - replace this example key with your valid key.
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
+            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + personGroupId + "/persons/" + personId;
 
-            HttpResponseMessage response = await client.GetAsync(uri);
+            HttpResponseMessage response = await Groups.client.GetAsync(uri);
 
             return await response.Content.ReadAsStringAsync();
 

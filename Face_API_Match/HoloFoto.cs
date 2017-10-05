@@ -50,9 +50,8 @@ namespace Face_API_Match
         public static async Task<string> MakeRequest(string imageFilePath)
         {
 
-            HttpClient client = new HttpClient();
             // Request headers.
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
+            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
 
             // Assemble the URI for the REST API Call.
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?" + "returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,facialHair,glasses";
@@ -67,7 +66,7 @@ namespace Face_API_Match
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
             // Execute the REST API call.
-            HttpResponseMessage response = await client.PostAsync(uri, content);
+            HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
             return await response.Content.ReadAsStringAsync();
 
         }
