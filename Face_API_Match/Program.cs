@@ -21,7 +21,6 @@ namespace Face_API_Match
             HoloFoto.HoloFaceId(imageFilePath).Wait();
 
             Match.ShowBestMatch().Wait();
-            Console.ReadLine();
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
