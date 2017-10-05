@@ -114,17 +114,10 @@ namespace Face_API_Match
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
 
-            try
-            {
+
                 HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
                 return await response.Content.ReadAsStringAsync();
-            }
 
-            catch (Exception ex)
-            {
-                var error = ex.Message;
-                throw;
-            }
         }
     }
 }

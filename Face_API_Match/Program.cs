@@ -16,11 +16,8 @@ namespace Face_API_Match
             Groups.InsertGroupID();
             Person.PutPersonsInlist().Wait();
             var watch = System.Diagnostics.Stopwatch.StartNew();
-
             HoloFoto.HoloFaceId(imageFilePath).Wait();
-
             Match.ShowBestMatch().Wait();
-
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.WriteLine();

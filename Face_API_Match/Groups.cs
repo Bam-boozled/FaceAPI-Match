@@ -19,8 +19,7 @@ namespace Face_API_Match
     {
 
         public static HttpClient client = new HttpClient();
-
-
+        
         public static string APIkey = ConfigurationManager.AppSettings["APIkey"];
         public static string GroupID { get; private set; }
         public static List<string> GroupIdList = new List<string>();
@@ -37,7 +36,6 @@ namespace Face_API_Match
             Console.WriteLine(GroupID);
 
         }
-    
         /// <summary>
         ///  http request to get al the groups connected listed in your APIkey
         /// </summary>
@@ -48,17 +46,10 @@ namespace Face_API_Match
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/";
 
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(uri);
-                return await response.Content.ReadAsStringAsync();
-            }
+            HttpResponseMessage response = await client.GetAsync(uri);
+            return await response.Content.ReadAsStringAsync();
+        
 
-            catch (Exception ex)
-            {
-                var error = ex.Message;
-                throw;
-            }
         }
 
         /// <summary>
