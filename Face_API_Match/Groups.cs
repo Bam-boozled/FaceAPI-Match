@@ -47,8 +47,18 @@ namespace Face_API_Match
             
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/";
-            HttpResponseMessage response = await client.GetAsync(uri);
-            return await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                return await response.Content.ReadAsStringAsync();
+            }
+
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
         }
 
         /// <summary>

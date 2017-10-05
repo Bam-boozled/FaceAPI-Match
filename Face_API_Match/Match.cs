@@ -113,12 +113,18 @@ namespace Face_API_Match
             HttpContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
 
+            try
+            {
+                HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
+                return await response.Content.ReadAsStringAsync();
+            }
 
-            Console.WriteLine("Response status: " + response.StatusCode);
-
-            return await response.Content.ReadAsStringAsync();
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
         }
     }
 }

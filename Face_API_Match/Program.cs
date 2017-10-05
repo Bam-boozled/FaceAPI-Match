@@ -13,7 +13,6 @@ namespace Face_API_Match
             string imageFilePath = "C:/Users/c.dams/Downloads/face_test_unknown_1.jpg";
 
         
-
             Groups.InsertGroupID();
             Person.PutPersonsInlist().Wait();
             var watch = System.Diagnostics.Stopwatch.StartNew();

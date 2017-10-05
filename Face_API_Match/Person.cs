@@ -31,9 +31,17 @@ namespace Face_API_Match
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + personGroupId + "/persons?";
 
-            HttpResponseMessage response = await Groups.client.GetAsync(uri);
 
-            return await response.Content.ReadAsStringAsync();
+            try
+            {
+                HttpResponseMessage response = await Groups.client.GetAsync(uri);
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
         }
 
         /// <summary>
@@ -95,9 +103,19 @@ namespace Face_API_Match
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/" + personGroupId + "/persons/" + personId;
 
-            HttpResponseMessage response = await Groups.client.GetAsync(uri);
 
-            return await response.Content.ReadAsStringAsync();
+            try
+            {
+                HttpResponseMessage response = await Groups.client.GetAsync(uri);
+                return await response.Content.ReadAsStringAsync();
+            }
+
+             catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
+          
 
         }
     }

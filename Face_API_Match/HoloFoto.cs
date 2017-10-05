@@ -66,8 +66,18 @@ namespace Face_API_Match
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
             // Execute the REST API call.
-            HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
-            return await response.Content.ReadAsStringAsync();
+           
+
+            try
+            {
+                HttpResponseMessage response = await Groups.client.PostAsync(uri, content);
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
 
         }
 
