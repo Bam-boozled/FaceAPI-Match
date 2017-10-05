@@ -17,7 +17,12 @@ namespace Face_API_Match
         public static string APIkey = ConfigurationManager.AppSettings["APIkey"];
         public static List<string> PersonIdList = new List<string>();
 
-
+        /// <summary>
+        /// List all persons in a person group, and retrieve person information 
+        /// (including personId, name, userData and persistedFaceIds of registered faces of the person).
+        /// </summary>
+        /// <param name="personGroupId">personGroupId of the target person group.</param>
+        /// <returns> A successful call returns an array of person information that belong to the person group.  </returns>
         public static async Task<string> GetPersonInfo(string personGroupId)
         {
 
@@ -32,11 +37,13 @@ namespace Face_API_Match
             return await response.Content.ReadAsStringAsync();
         }
 
+        /// <summary>
+        /// Lists all personIds from group <see cref="Groups"/> 
+        /// </summary>
         public static async void PutPersonsInlist()
         {
 
             string personGroupId = Groups.GroupID;
-            //  string personGroupId = "betabit121";
             string personList = await GetPersonInfo(personGroupId);
 
             var result = JsonConvert.DeserializeObject<List<PersonJson>>(personList);
@@ -44,7 +51,6 @@ namespace Face_API_Match
 
             for (int x = 0; x < result.Count; x++)
             {
-
                 if (result[x].PersistedFaceIds.Count != 0)
                 {
                     Console.WriteLine("\nnaam van deze persoon: " + result[x].Name);
@@ -55,12 +61,15 @@ namespace Face_API_Match
                     PersonIdList.Add(result[x].PersonId);
 
                 }
-
             }
-
-
         }
 
+        /// <summary>
+        /// Retrieve a person's information, including registered persisted faces, name and userData.
+        /// </summary>
+        /// <param name="personGroupId">Specifying the person group containing the target person.</param>
+        /// <param name="personId">Specifying the target person.</param>
+        /// <returns> name from target person</returns>
         public static async Task<string> ShowPersonInfo(string personGroupId, string personId)
 
         {
@@ -69,11 +78,16 @@ namespace Face_API_Match
             string personinfo = await PersonInfo(persongroupid, personid);
             var result = JsonConvert.DeserializeObject<PersonJson>(personinfo);
 
-            //Console.WriteLine(result.Name);
             return result.Name;
 
         }
 
+        /// <summary>
+        /// Retrieve a person's information, including registered persisted faces, name and userData.
+        /// </summary>
+        /// <param name="personGroupId">Specifying the person group containing the target person.</param>
+        /// <param name="personId">Specifying the target person.</param>
+        /// <returns>A successful call returns the person's information. </returns>
         public static async Task<string> PersonInfo(string personGroupId, string personId)
         {
 

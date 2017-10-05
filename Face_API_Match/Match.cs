@@ -22,6 +22,12 @@ namespace Face_API_Match
         public static bool IsIdentical { get; private set; }
         public static string BestMatchName { get; private set; }
 
+        /// <summary>
+        /// Shows the best match. 
+        /// Gets the right faceid from the hololens foto from <see cref="HoloFoto.HoloFaceId(string)"/>
+        /// Gets the chosen groupid from <see cref="Groups.InsertGroupID"/>
+        /// Gets all the necessary Person info from <seealso cref="Person.ShowPersonInfo(string, string)"/>
+        /// </summary>
         public static async void ShowBestMatch()
         {
             List<double> confidence = new List<double>();
@@ -84,15 +90,17 @@ namespace Face_API_Match
             Console.WriteLine("Hoe groot is de kans dat deze personen overeenkomen : " + BestMatch);
             Console.WriteLine("Wat is de personid van deze match: " + BestMatchId);
             Console.WriteLine("Naam van deze persoon? : " + BestMatchName);
-
-
-
-
-
-
-
-
+            
         }
+
+        /// <summary>
+        /// Verify whether two faces belong to a same person or whether one face belongs to a person. 
+        /// </summary>
+        /// <param name="faceId"> FaceId from target HoloLens photo </param>
+        /// <param name="personGroupId"> personGroupId from target group </param>
+        /// <param name="personId">personId from target Person </param>
+        /// <returns> A successful call returns the verification result. It contains the 
+        /// confidence number and whether is a match or not </returns>
         public static async Task<string> VerifyFaces(string faceId, string personGroupId, string personId)
         {
 

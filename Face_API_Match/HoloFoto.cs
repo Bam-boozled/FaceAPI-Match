@@ -18,6 +18,12 @@ namespace Face_API_Match
         public static string APIkey = ConfigurationManager.AppSettings["APIkey"];
         public static string FaceId { get; private set; }
 
+
+     
+        /// <summary>
+        /// Post .jpg to the API and deserialize json string for faceId
+        /// </summary>
+        /// <param name="imageFilePath">location of .jpg file</param>
         public static async void HoloFaceId(string imageFilePath)
         {
 
@@ -32,8 +38,15 @@ namespace Face_API_Match
 
         }
 
-        
-        
+
+
+
+        /// <summary>
+        ///  Detect human face in an image.
+        /// </summary>
+        /// <param name="imageFilePath">location of .jpg file</param>
+        /// <returns>A successful call returns an array of face entries ranked by face rectangle size in descending order.
+        ///  An empty response indicates no faces detected. </returns>
         public static async Task<string> MakeRequest(string imageFilePath)
         {
 
@@ -43,7 +56,7 @@ namespace Face_API_Match
 
             // Assemble the URI for the REST API Call.
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?" + "returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,facialHair,glasses";
-            ;
+            
 
             // Request body. Posts a JPEG image.
             byte[] byteData = GetImageAsByteArray(imageFilePath);
@@ -59,7 +72,11 @@ namespace Face_API_Match
 
         }
 
-
+        /// <summary>
+        /// Returns the contents of the specified file as a byte array.
+        /// </summary>
+        /// <param name="imageFilePath">location of .jpg file</param>
+        /// <returns>The byte array of the image data.</returns>
         static byte[] GetImageAsByteArray(string imageFilePath)
         {
             FileStream fileStream = new FileStream(imageFilePath, FileMode.Open, FileAccess.Read);
