@@ -28,7 +28,7 @@ namespace Face_API_Match
         /// Gets the chosen groupid from <see cref="Groups.InsertGroupID"/>
         /// Gets all the necessary Person info from <seealso cref="Person.ShowPersonInfo(string, string)"/>
         /// </summary>
-        public static async void ShowBestMatch()
+        public static async Task ShowBestMatch()
         {
             List<double> confidence = new List<double>();
             List<bool> isidentical = new List<bool>();
@@ -104,9 +104,8 @@ namespace Face_API_Match
         public static async Task<string> VerifyFaces(string faceId, string personGroupId, string personId)
         {
 
-            const string subscriptionKey = "e57a566e8fed4377b4ef178c8feba526";
 
-            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+            Groups.client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", APIkey);
 
             string uri = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify";
 

@@ -24,7 +24,7 @@ namespace Face_API_Match
         /// Post .jpg to the API and deserialize json string for faceId
         /// </summary>
         /// <param name="imageFilePath">location of .jpg file</param>
-        public static async void HoloFaceId(string imageFilePath)
+        public static async Task HoloFaceId(string imageFilePath)
         {
 
             Console.WriteLine("Foto naar API sturen en wachten op de biometrische waarden..\n");

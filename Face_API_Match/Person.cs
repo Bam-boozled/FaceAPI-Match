@@ -39,7 +39,7 @@ namespace Face_API_Match
         /// <summary>
         /// Lists all personIds from group <see cref="Groups"/> 
         /// </summary>
-        public static async void PutPersonsInlist()
+        public static async Task PutPersonsInlist()
         {
 
             string personGroupId = Groups.GroupID;

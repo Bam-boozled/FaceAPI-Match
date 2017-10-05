@@ -15,14 +15,12 @@ namespace Face_API_Match
         
 
             Groups.InsertGroupID();
-            Person.PutPersonsInlist();
+            Person.PutPersonsInlist().Wait();
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.ReadLine();
 
-            HoloFoto.HoloFaceId(imageFilePath);
-            Console.ReadLine();
+            HoloFoto.HoloFaceId(imageFilePath).Wait();
 
-            Match.ShowBestMatch();
+            Match.ShowBestMatch().Wait();
             Console.ReadLine();
 
             watch.Stop();
