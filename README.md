@@ -1,7 +1,7 @@
 # FaceAPI-Match
 
 To create persons, groups etc for the Microsoft Face API : 
-https://github.com/MrSwizzler/FaceAPI/
+https://github.com/Bam-boozled/FaceAPI/
 
 Console Application for the Windows FACE API which makes it possible to :
 1. Choose between groups.
